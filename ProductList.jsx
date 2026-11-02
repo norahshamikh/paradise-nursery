@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
 
@@ -160,56 +161,10 @@ function ProductList() {
         <h2>Paradise Nursery</h2>
 
         <div>
-          <a href="/">Home</a>
-          <a href="#plants">Plants</a>
-          <a href="/cart">
+          <Link to="/">Home</Link>
+          <Link to="/plants">Plants</Link>
+          <Link to="/cart">
             Cart ({cartCount})
-          </a>
+          </Link>
         </div>
-      </nav>
-
-      <header className="products-header">
-        <h1>Our Houseplants</h1>
-        <p>Bring nature and beauty into your home.</p>
-      </header>
-
-      {categories.map((category) => (
-        <section key={category} className="plant-category">
-          <h2>{category}</h2>
-
-          <div className="plant-grid">
-            {plants
-              .filter((plant) => plant.category === category)
-              .map((plant) => {
-                const isAdded = cartItems.some(
-                  (item) => item.id === plant.id
-                );
-
-                return (
-                  <div className="plant-card" key={plant.id}>
-                    <img
-                      src={plant.image}
-                      alt={plant.name}
-                    />
-
-                    <h3>{plant.name}</h3>
-
-                    <p>${plant.price}</p>
-
-                    <button
-                      onClick={() => handleAddToCart(plant)}
-                      disabled={isAdded}
-                    >
-                      {isAdded ? "Added to Cart" : "Add to Cart"}
-                    </button>
-                  </div>
-                );
-              })}
-          </div>
-        </section>
-      ))}
-    </div>
-  );
-}
-
-export default ProductList;
+     
