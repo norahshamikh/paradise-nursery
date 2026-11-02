@@ -1,15 +1,20 @@
 import React from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
+
 import AboutUs from "./AboutUs.jsx";
-function App() {
+import ProductList from "./ProductList.jsx";
+import CartItem from "./CartItem.jsx";
+
+function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="landing-page">
       <div className="landing-content">
         <h1>Paradise Nursery</h1>
 
-        <p>
-          Bring Nature Into Your Home
-        </p>
+        <p>Bring Nature Into Your Home</p>
 
         <p>
           Discover beautiful houseplants and make
@@ -18,9 +23,7 @@ function App() {
 
         <button
           className="get-started-btn"
-          onClick={() => {
-            window.location.href = "#plants";
-          }}
+          onClick={() => navigate("/plants")}
         >
           Get Started
         </button>
@@ -30,6 +33,16 @@ function App() {
         </section>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/plants" element={<ProductList />} />
+      <Route path="/cart" element={<CartItem />} />
+    </Routes>
   );
 }
 
